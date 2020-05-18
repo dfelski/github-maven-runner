@@ -21,7 +21,7 @@ RUN wget http://ftp.fau.de/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache
   && tar -xzf maven.tar.gz -C /maven --strip-components=1 \
   && rm maven.tar.gz
 
-FROM tcardonne/github-runner:latest
+FROM tcardonne/github-runner:v1.3.0
 
 # Install Java
 COPY --from=builder /jdk /opt/java/openjdk
