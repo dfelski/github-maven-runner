@@ -3,8 +3,8 @@ FROM debian:10-slim AS builder
 RUN apt update && apt install -y wget unzip;
 
 # Download and unpack Java
-ARG JDK11_PATH=11.0.7+10
-ARG JDK11_FILE=11.0.7_10
+ARG JDK11_PATH=11.0.9.1+1
+ARG JDK11_FILE=11.0.9.1_1
 
 RUN wget https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-${JDK11_PATH}/OpenJDK11U-jdk_x64_linux_hotspot_${JDK11_FILE}.tar.gz -nv -O jdk.tar.gz \
   && mkdir -p /jdk \
@@ -21,7 +21,7 @@ RUN wget http://ftp.fau.de/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache
   && tar -xzf maven.tar.gz -C /maven --strip-components=1 \
   && rm maven.tar.gz
 
-FROM tcardonne/github-runner:v1.3.0
+FROM tcardonne/github-runner:v1.8.0
 
 # Install Java
 COPY --from=builder /jdk /opt/java/openjdk
